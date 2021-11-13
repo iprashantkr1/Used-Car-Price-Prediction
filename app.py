@@ -15,6 +15,13 @@ from sklearn.preprocessing import StandardScaler
 app = Flask(__name__, template_folder='template')
 model = pickle.load(open('random_forest_regression_model.pkl', 'rb'))
 @app.route('/',methods=['GET'])
+
+def api_response():
+    from flask import jsonify
+    if request.method == 'POST':
+        return jsonify(**request.json)
+    
+    
 def Home():
     return render_template('index.html')
 
